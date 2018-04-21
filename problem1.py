@@ -4,8 +4,7 @@ import numpy as np
 
 
 def rollDices(dice,side,trail=10000):
-    print("❤ "*20)
-    print("Roll {} dices of {} sides for {} times\n".format(dice,side,trail))
+    print("❤ Roll {} dices of {} sides for {} times\n".format(dice,side,trail))
     global DB
     global SIDE
 
@@ -25,7 +24,6 @@ def rollDices(dice,side,trail=10000):
     theory_var = sum(pow(sumArray-theory_mean,2)*distribution)
     theory_std = pow(theory_var,0.5)
 
-
     print('Mean>\n theory: {theory:.4f}\n experiment: {exp:.4f}\n error ratio: {ratio:.6f}\n'
         .format(theory=theory_mean,exp=mean,ratio=abs(mean-theory_mean)/theory_mean))
 
@@ -35,6 +33,14 @@ def rollDices(dice,side,trail=10000):
     print('Standard deviation>\n theory: {theory:.4f}\n experiment: {exp:.4f}\n error ratio: {ratio:.6f}\n'
         .format(theory=theory_std,exp=stdev,ratio=abs(stdev-theory_std)/theory_std))
 
+
+# There is a better way to caculate mean value
+# using the fact that each dice are indepandent...
+# rather than caculate its probability distribution
+# credit to ChengHsinHan 👍 (https://github.com/NTHU-Phys-Qubit/SM-2-ChengHsinHan/blob/master/NDice_np.py) 
+
+# but I still keep the recursive method.
+# Ref to : https://digitalscholarship.unlv.edu/cgi/viewcontent.cgi?article=1025&context=grrj
 
 def pointProbability(dice,point):
     pointArray = np.linspace(1,SIDE,SIDE)  
